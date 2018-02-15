@@ -1,0 +1,25 @@
+include ../../node_modules/bemto.pug/bemto
+include /button-cross/=button-cross
+
++b.page(
+  id="app",
+  :class="[" +
+  "`page_ui_${app.uiColor}`," +
+  "`page_platform_${app.isMobilePlatform ? 'mobile' : 'desktop'}`" +
+  "]"
+)
+  transition(
+    appear,
+    @enter="fadeIn"
+  )
+    +e.wrapper(v-show="app.isReady")
+      transition(
+        @enter="fadeIn",
+        @leave="fadeOut"
+      )
+        +e.container
+          +e.LOADER.loader
+
+          headerModule
+
+          nuxt

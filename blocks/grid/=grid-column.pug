@@ -1,0 +1,12 @@
+mixin grid-column(props)
+  - var props = typeof props != 'undefined' ? props : {}
+
+  - var attrs = props.attrs || {}
+  - var tag = props.tag || 'div'
+  - var mods = props.mods || {}
+  - var mix = props.mix ? {'class': props.mix} : {}
+
+  #{tag}.grid__column(
+    class= mods.size ? `grid__column_size_${mods.size}` : "",
+  )&attributes(attrs, mix)
+    block

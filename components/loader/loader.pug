@@ -1,0 +1,22 @@
+include ../../node_modules/bemto.pug/bemto
+
++b.loader
+  +b.hidden(v-images-loaded:on.progress="imageProgress")
+    img(
+      v-for="item in loader.images",
+      :src="item"
+    )
+
+  transition(
+    @enter="hookEnter",
+    @leave="hookLeave",
+  )
+    +e.body(
+      v-if="loaderVisibility",
+      :class="{" +
+      "'loader_ui_white': app.uiColor === 'white'," +
+      "'loader_ui_black': app.uiColor === 'black'" +
+      "}"
+    )
+      +e.cover(:style="{opacity: loader.opacity}")
+      +e.value {{ value }}

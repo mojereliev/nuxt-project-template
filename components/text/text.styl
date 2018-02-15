@@ -1,0 +1,34 @@
+@import "~blocks/text-elements/text-elements"
+
+.text
+  display flex
+  min-height (100vw / 1600 * 900)
+  align-items center
+
+  +phone()
+    display block
+    padding rem($baseOffset * 2 $baseOffset)
+
+  &__wrapper
+    display flex
+
+    +phone()
+      display block
+
+  &__part
+    margin-bottom rem(24)
+
+  &__column
+    container()
+    width 50%
+    padding-top rem($baseOffset)
+    padding-bottom rem($baseOffset)
+
+  &__content
+    width (100% / 3 * 2)
+
+    +tablet()
+      width 100%
+
+    &_align_right
+      margin-left auto

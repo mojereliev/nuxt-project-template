@@ -1,0 +1,15 @@
+include ../../node_modules/bemto.pug/bemto
+
+transition(
+  appear,
+  @enter="fadeInDown",
+  @leave="hookLeave"
+)
+  +b.HEADER.header(:class="color ? `header_color_${color}` : ''")
+    +e.ROUTER-LINK.logo(:to="{name: 'index'}")
+      +e.ICON.logo-icon(id="logo")
+
+
+    +e.ROUTER-LINK(:to="{name: 'index'}") Index
+    +e.ROUTER-LINK(:to="{name: 'contact'}") Contact
+

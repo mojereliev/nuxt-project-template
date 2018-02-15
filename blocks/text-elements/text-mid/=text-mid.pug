@@ -1,0 +1,14 @@
+mixin text-mid(props)
+  - var props = typeof props != 'undefined' ? props : {}
+
+  - var attrs = props.attrs || {}
+  - var tag = props.tag || 'div'
+  - var mods = props.mods || {}
+  - var mix = props.mix ? {'class': props.mix} : {}
+
+  - var opacity = typeof mods.opacity != 'undefined' ? mods.opacity : true
+
+  #{tag}.text-mid(
+    class= opacity ? "text-mid_opacity" : ""
+  )&attributes(attrs, mix)
+    block

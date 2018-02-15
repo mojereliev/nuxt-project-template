@@ -1,0 +1,9 @@
+mixin grid(props)
+  - var props = typeof props != 'undefined' ? props : {}
+
+  - var attrs = props.attrs || {}
+  - var tag = props.tag || 'div'
+  - var mix = props.mix ? {'class': props.mix} : {}
+
+  #{tag}.grid&attributes(attrs, mix)
+    block

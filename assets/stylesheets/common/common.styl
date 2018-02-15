@@ -1,0 +1,79 @@
+text-bigger()
+  font-size rem(160)
+  line-height 1
+  font-family 'fondo', Helvetica, sans-serif
+  font-weight 600
+
+text-big()
+  font-size rem(120)
+  line-height 1
+  margin-left -.05em
+  font-family 'fondo', Helvetica, sans-serif
+  font-weight 600
+
+text-mid()
+  font-size rem(30)
+  line-height (40 / 30)
+
+  +phone()
+    font-size rem(60)
+    line-height (80 / 60)
+
+text-small()
+  font-size $baseFontSize
+  line-height (22 / 13)
+
+  +phone()
+    font-size rem(40)
+    line-height (60 / 40)
+
+text-smaller()
+  font-size $baseFontSize
+  line-height (22 / 13)
+
+  +phone()
+    font-size rem(30)
+    line-height (50 / 30)
+
+link-style($inverted = false)
+  add-area(60, 80)
+  color currentColor
+  line-height 1
+  transition opacity .3s ease, color .3s ease
+  background none
+  text-decoration none
+  cursor pointer
+  position relative
+  -webkit-tap-highlight-color transparent
+
+  if ($inverted)
+    opacity .4
+
+    &.router-link-active
+    &.nuxt-link-active
+      opacity 1
+
+  else
+    opacity 1
+
+    &.router-link-active
+    &.nuxt-link-active
+      opacity .4
+
+  &:hover
+    .page:not(.page_platform_mobile) &
+      opacity .6
+
+  &:disabled
+    opacity .4
+    cursor default
+
+container()
+  padding-left rem($baseOffset)
+  padding-right rem($baseOffset)
+
+scroll()
+  height 100%
+  overflow hidden
+  overflow-y auto
+  -webkit-overflow-scrolling touch

@@ -1,0 +1,25 @@
+.link
+  display inline-block
+  vertical-align top
+  color currentColor
+  text-decoration none
+  transition opacity .2s ease
+  opacity 1
+
+  &_nowrap
+    white-space nowrap
+
+  &:hover
+    .page:not(.page_platform_mobile) &
+      opacity .4
+
+  &_nowrap
+    white-space nowrap
+
+  &_inverted
+    opacity .4
+
+    &:hover
+      .page:not(.page_platform_mobile) &
+        &.link
+          opacity 1
