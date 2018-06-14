@@ -3,7 +3,9 @@ export default {
 
   components: {},
 
-  data() {},
+  data() {
+    return {};
+  },
 
   computed: {},
 
