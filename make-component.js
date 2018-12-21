@@ -1,12 +1,12 @@
 'use strict';
 
-import fs from 'fs';
-import path from 'path';
-import {createInterface} from 'readline';
+const fs = require('fs');
+const path = require('path');
+const createInterface = require('readline').createInterface;
 const rl = createInterface(process.stdin, process.stdout);
 
 // folder with all blocks
-const BLOCKS_DIR = path.join(__dirname, 'source/components');
+const BLOCKS_DIR = path.join(__dirname, 'components');
 
 // //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -17,13 +17,13 @@ const fileSources = {
 <script src="./{blockName}.js"></script>
 
 <style lang="stylus" rel="stylesheet/stylus" src="./{blockName}.styl" scoped></style>\n`,
-  js: `export default {  
+  js: `export default {
   name: '{blockName}',
   
   components: {},
   
   data() {
-    return {}
+    return {};
   },
   
   computed: {},
@@ -32,15 +32,14 @@ const fileSources = {
   
   created() {},
   
-  mounted: function() {},
+  mounted: function () {},
   
   methods: {},
   
   beforeDestroy() {}
-}\n`,
+};\n`,
 
-  pug: `include ../../../node_modules/bemto.pug/bemto
-
+  pug: `include ../../node_modules/bemto.pug/bemto
 +b.{blockName}\n\t`,
 
   styl: `.{blockName}
@@ -56,7 +55,7 @@ function validateBlockName(blockName) {
     } else {
       const errMsg = (
         `ERR>>> An incorrect block name '${blockName}'\n` +
-				'ERR>>> A block name must include letters, numbers & the minus symbol.'
+        'ERR>>> A block name must include letters, numbers & the minus symbol.'
       );
       reject(errMsg);
     }

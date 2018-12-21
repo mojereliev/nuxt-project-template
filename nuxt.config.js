@@ -7,8 +7,8 @@ const isJsRule = rule => {
   return rule.test.toString() === '/\\.js$/';
 };
 
-const isVueRule = rule => {
-  return rule.test.toString() === '/\\.vue$/';
+const isPugRule = rule => {
+  return rule.test.toString() === '/\\.pug$/';
 };
 
 const isStylusRule = rule => {
@@ -85,6 +85,9 @@ module.exports = {
   ],
   loading: false,
   build: {
+    babel: {
+      plugins: ['@babel/plugin-proposal-optional-chaining']
+    },
     extractCSS: true,
     vendor: [
       'babel-polyfill'
@@ -124,12 +127,22 @@ module.exports = {
             /node_modules\/smooth-scrolling/
           ];
         }
-        if (isVueRule(rule)) {
-          rule.options.template.basedir = path.join(__dirname, 'blocks');
-          rule.options.loaders.stylus.push(stylusResourcesLoader);
+        if (isPugRule(rule)) {
+          rule.oneOf.forEach(item => {
+            item.use.forEach(use => {
+              if (use.loader === 'pug-plain-loader') {
+                use.options = {
+                  ...use.options,
+                  basedir: path.join(__dirname, 'blocks')
+                };
+              }
+            });
+          });
         }
         if (isStylusRule(rule)) {
-          rule.use.push(stylusResourcesLoader);
+          rule.oneOf.forEach(item => {
+            item.use.push(stylusResourcesLoader);
+          });
         }
       });
 
