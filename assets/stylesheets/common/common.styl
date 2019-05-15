@@ -1,64 +1,63 @@
-text-bigger()
-  font-size rem(160)
-  line-height 1
-  font-family 'fondo', Helvetica, sans-serif
+title-big()
+  font-size 80px
+  font-weight 800
+  text-transform uppercase
+  line-height (85 / 80)
+  margin-left -.05em
+
+  +tablet()
+    font-size 60px
+
+  +mobile()
+    font-size 32px
+
+title-medium()
+  font-size 32px
+  font-weight 800
+  text-transform uppercase
+  line-height (40 / 32)
+
+  +mobile()
+    font-size 24px
+
+title-small()
+  font-size 18px
   font-weight 600
+  letter-spacing (1em / 18)
+  text-transform uppercase
+  line-height (22 / 18)
 
 text-big()
-  font-size rem(120)
-  line-height 1
-  margin-left -.05em
-  font-family 'fondo', Helvetica, sans-serif
-  font-weight 600
+  font-size 24px
+  line-height (42 / 24)
 
-text-mid()
-  font-size rem(30)
-  line-height (40 / 30)
+  +mobile()
+    font-size 18px
 
-  +phone()
-    font-size rem(60)
-    line-height (80 / 60)
+text-medium()
+  font-size 18px
+  line-height (29 / 18)
+
+  +mobile()
+    font-size 16px
 
 text-small()
-  font-size $baseFontSize
-  line-height (22 / 13)
+  font-size 16px
+  line-height (26 / 16)
 
-  +phone()
-    font-size rem(40)
-    line-height (60 / 40)
-
-text-smaller()
-  font-size $baseFontSize
-  line-height (22 / 13)
-
-  +phone()
-    font-size rem(30)
-    line-height (50 / 30)
-
-link-style($inverted = false)
-  add-area(60, 80)
+link-style()
   color currentColor
-  line-height 1
   transition opacity .3s ease, color .3s ease
   background none
   text-decoration none
   cursor pointer
   position relative
   -webkit-tap-highlight-color transparent
+  opacity 1
 
-  if ($inverted)
+  &.router-link-active
+  &.nuxt-link-active
     opacity .4
-
-    &.router-link-active
-    &.nuxt-link-active
-      opacity 1
-
-  else
-    opacity 1
-
-    &.router-link-active
-    &.nuxt-link-active
-      opacity .4
 
   &:hover
     .page:not(.page_platform_mobile) &
@@ -69,11 +68,19 @@ link-style($inverted = false)
     cursor default
 
 container()
-  padding-left rem($baseOffset)
-  padding-right rem($baseOffset)
+  width 100%
+  max-width 1130px
+  padding-left $baseOffset
+  padding-right $baseOffset
+  margin-left auto
+  margin-right auto
+
+container-large()
+  container()
+  max-width 1310px
 
 scroll()
   height 100%
   overflow hidden
-  overflow-y auto
+  overflow-y scroll
   -webkit-overflow-scrolling touch

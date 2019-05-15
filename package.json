@@ -8,16 +8,13 @@
     "build": "NODE_ENV=production nuxt build",
     "start": "NODE_ENV=production nuxt start",
     "generate": "NODE_ENV=production nuxt generate",
-    "generate-ext": "touch generating && npm run generate && mv build build-old && mv dist build && npm run create-symlinks && rm -rf build-old && rm generating",
-    "make-component": "babel-node make-component.js",
-    "create-symlinks": "ln -s /home/deploy/tondo/shared/public/assets/ build/ && ln -s /home/deploy/tondo/shared/public/uploads/ build/",
     "mc": "npm run make-component",
     "lint": "eslint --ext .js --ignore-path .gitignore .",
     "lint-fix": "eslint --ext .js --ignore-path .gitignore . --fix"
   },
   "husky": {
     "hooks": {
-      "precommit": "npm run lint"
+      "pre-commit": "npm run lint"
     }
   },
   "author": "Mikhail Ojereliev",
@@ -52,6 +49,7 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.3.1",
     "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "config": "^3.0.0",
     "gsap": "^2.0.2",
     "moment": "^2.18.1",

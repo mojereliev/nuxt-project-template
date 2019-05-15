@@ -1,4 +1,4 @@
-import {mapState, mapGetters, mapMutations} from 'vuex';
+import {mapGetters} from 'vuex';
 
 export default {
   name: 'index-root',
@@ -12,12 +12,6 @@ export default {
   },
 
   computed: {
-    ...mapState([
-      'activeCase',
-      'cases',
-      'loader'
-    ]),
-
     ...mapGetters([
       'isMobile'
     ])
@@ -29,11 +23,7 @@ export default {
 
   mounted: function () {},
 
-  methods: {
-    ...mapMutations([
-      'setLoadImages'
-    ])
-  },
+  methods: {},
 
   beforeDestroy() {}
 };

@@ -3,6 +3,10 @@ export default {
 
   components: {},
 
+  meta: {
+    uiColor: 'white'
+  },
+
   data() {
     return {};
   },

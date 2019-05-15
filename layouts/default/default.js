@@ -2,7 +2,6 @@ import {mapState, mapGetters, mapMutations} from 'vuex';
 import {TimelineMax, CSSPlugin, TweenMax, EasePack} from 'gsap'; // eslint-disable-line
 
 import headerModule from '~/components/header/header.vue';
-import loader from '~/components/loader/loader.vue';
 
 import throttle from 'assets/helpers/throttle';
 import {fadeIn, fadeOut} from 'assets/helpers/animations.js';
@@ -17,8 +16,7 @@ const SwipeDetect = process.browser
 
 export default {
   components: {
-    headerModule,
-    loader
+    headerModule
   },
 
   data() {
@@ -32,17 +30,17 @@ export default {
     };
   },
 
-  head() {
-    return {
-      title: this.commonData.meta.title,
-      meta: [
-        {hid: 'ogtitle', property: 'og:title', content: this.commonData.meta.title},
-        {hid: 'description', name: 'description', content: this.commonData.meta.description},
-        {hid: 'ogdescription', property: 'og:description', content: this.commonData.meta.description},
-        {hid: 'ogimage', property: 'og:image', content: this.commonData.meta.og_image}
-      ]
-    };
-  },
+  // head() {
+  //   return {
+  //     title: this.commonData.meta.title,
+  //     meta: [
+  //       {hid: 'ogtitle', property: 'og:title', content: this.commonData.meta.title},
+  //       {hid: 'description', name: 'description', content: this.commonData.meta.description},
+  //       {hid: 'ogdescription', property: 'og:description', content: this.commonData.meta.description},
+  //       {hid: 'ogimage', property: 'og:image', content: this.commonData.meta.og_image}
+  //     ]
+  //   };
+  // },
 
   computed: {
     ...mapState([

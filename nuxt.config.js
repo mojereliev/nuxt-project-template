@@ -4,15 +4,15 @@ const path = require('path');
 const SvgStore = require('webpack-svgstore-plugin');
 
 const isJsRule = rule => {
-  return rule.test.toString() === '/\\.js$/';
+  return rule.test.toString() === '/\\.js$/i';
 };
 
 const isPugRule = rule => {
-  return rule.test.toString() === '/\\.pug$/';
+  return rule.test.toString() === '/\\.pug$/i';
 };
 
 const isStylusRule = rule => {
-  return ['/\\.styl(us)?$/'].indexOf(rule.test.toString()) !== -1;
+  return rule.test.toString() === '/\\.styl(us)?$/i';
 };
 
 const stylusResourcesLoader = {
@@ -71,6 +71,7 @@ module.exports = {
     '@nuxtjs/axios'
   ],
   plugins: [
+    '~plugins/axios',
     '~plugins/filters.js',
     '~plugins/svgstore.js',
     '~plugins/gsap.js',
@@ -79,6 +80,11 @@ module.exports = {
     'assets/helpers/animations.js',
     'assets/helpers/colorHelper.js'
   ],
+  router: {
+    middleware: [
+      'theme'
+    ]
+  },
   axios: modulesConfig.get('axios'),
   css: [
     '~assets/stylesheets/application.styl'
@@ -111,8 +117,6 @@ module.exports = {
       })
     ],
     extend(config) {
-      config.resolve.alias.blocks = path.join(__dirname, 'blocks');
-
       config.module.rules.forEach(rule => {
         if (isJsRule(rule)) {
           rule.exclude = [];

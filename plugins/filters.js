@@ -1,10 +1,15 @@
 import Vue from 'vue';
+import moment from 'moment';
 
 Vue.filter('capitalize', string => {
   if (typeof string === 'string') {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
   return string;
+});
+
+Vue.filter('dateFormat', (date, dateFormat = 'MMMM DD, YYYY') => {
+  return moment(date).format(dateFormat);
 });
 
 Vue.filter('pluralize', (count, label = '') => {

@@ -2,15 +2,24 @@ const platformDetect = process.browser
   ? require('assets/helpers/platformDetect.js')
   : null;
 
+const scrollBarHelper = process.browser
+  ? require('assets/helpers/scrollBarHelper.js')
+  : null;
+
 export default {
-  state: {
-    currentLayout: null,
-    fontSize: 0,
-    isLoad: null,
-    isMobilePlatform: platformDetect ? platformDetect.detectMobile.isMobile : null,
-    isReady: null,
-    sizes: null,
-    uiColor: null
+  state: () => {
+    return {
+      currentLayout: null,
+      fontSize: 0,
+      isLoad: null,
+      isMobilePlatform: platformDetect ? platformDetect.detectMobile.isMobile : null,
+      isReady: null,
+      sizes: null,
+      uiColor: 'black',
+      scrollBar: {
+        width: scrollBarHelper ? scrollBarHelper.getScrollBarWidth() : null
+      }
+    };
   },
   mutations: {
     setAppReady(state, payload) {
@@ -41,6 +50,9 @@ export default {
     },
     isTablet: state => {
       return state.currentLayout === 'tablet';
+    },
+    isDesktop: state => {
+      return state.currentLayout === 'desktop';
     }
   }
 };

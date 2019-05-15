@@ -134,7 +134,7 @@ module.exports = {
     'no-undef': 2,
     'no-undef-init': 2,
     'no-undefined': 2,
-    'no-underscore-dangle': 2,
+    'no-underscore-dangle': 1,
     'no-unneeded-ternary': 2,
     'no-unreachable': 2,
     'no-unused-expressions': 2,

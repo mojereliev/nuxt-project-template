@@ -1,9 +1,0 @@
-mixin subtitle(props)
-  - var props = typeof props != 'undefined' ? props : {}
-
-  - var attrs = props.attrs || {}
-  - var tag = props.tag || 'h4'
-  - var mix = props.mix ? {'class': props.mix} : {}
-
-  #{tag}.subtitle&attributes(attrs, mix)
-    block
