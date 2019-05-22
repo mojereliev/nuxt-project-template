@@ -19,27 +19,28 @@ const fileSources = {
 <style lang="stylus" rel="stylesheet/stylus" src="./{blockName}.styl" scoped></style>\n`,
   js: `export default {
   name: '{blockName}',
-  
+
   components: {},
-  
+
   data() {
     return {};
   },
-  
+
   computed: {},
-  
+
   watch: {},
-  
+
   created() {},
-  
+
   mounted: function () {},
-  
+
   methods: {},
-  
+
   beforeDestroy() {}
 };\n`,
 
   pug: `include ../../node_modules/bemto.pug/bemto
+
 +b.{blockName}\n\t`,
 
   styl: `.{blockName}
