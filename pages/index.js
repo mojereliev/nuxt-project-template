@@ -19,9 +19,9 @@ export default {
 
   watch: {},
 
-  created: function () {},
+  created() {},
 
-  mounted: function () {},
+  mounted() {},
 
   methods: {},
 

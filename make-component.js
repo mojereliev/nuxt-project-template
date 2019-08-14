@@ -32,7 +32,7 @@ const fileSources = {
 
   created() {},
 
-  mounted: function () {},
+  mounted() {},
 
   methods: {},
 

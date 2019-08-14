@@ -73,12 +73,11 @@ module.exports = {
   plugins: [
     '~plugins/axios',
     '~plugins/filters.js',
+    '~plugins/directives.js',
     '~plugins/svgstore.js',
     '~plugins/gsap.js',
     '~plugins/vee-validate.js',
-    '~plugins/vue-touch.js',
-    'assets/helpers/animations.js',
-    'assets/helpers/colorHelper.js'
+    'assets/helpers/animations.js'
   ],
   router: {
     middleware: [
@@ -94,7 +93,7 @@ module.exports = {
     babel: {
       plugins: ['@babel/plugin-proposal-optional-chaining']
     },
-    extractCSS: true,
+    // extractCSS: true,
     vendor: [
       'babel-polyfill'
     ],

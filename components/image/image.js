@@ -20,7 +20,7 @@ export default {
 
   created() {},
 
-  mounted: function () {},
+  mounted: {},
 
   methods: {},
 

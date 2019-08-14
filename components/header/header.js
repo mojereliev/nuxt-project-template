@@ -1,7 +1,5 @@
 import icon from '~/components/icon/icon.vue';
 
-import {fadeInDown, fadeOutUp} from 'assets/helpers/animations';
-
 export default {
   name: 'header-component',
 
@@ -16,10 +14,7 @@ export default {
   },
 
   data() {
-    return {
-      fadeInDown: fadeInDown,
-      fadeOutUp: fadeOutUp
-    };
+    return {};
   },
 
   computed: {},
@@ -28,13 +23,9 @@ export default {
 
   created() {},
 
-  mounted: function () {},
+  mounted() {},
 
-  methods: {
-    hookLeave(el, done) {
-      fadeOutUp(el, done, '+=.3');
-    }
-  },
+  methods: {},
 
   beforeDestroy() {}
 };

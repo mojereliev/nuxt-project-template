@@ -1,5 +1,8 @@
 import Vue from 'vue';
 import moment from 'moment';
+const inputmask = process.browser
+  ? require('inputmask')
+  : null;
 
 Vue.filter('capitalize', string => {
   if (typeof string === 'string') {
@@ -8,19 +11,48 @@ Vue.filter('capitalize', string => {
   return string;
 });
 
-Vue.filter('dateFormat', (date, dateFormat = 'MMMM DD, YYYY') => {
+Vue.filter('phoneFormat', (value, phoneFormat = '9 (999) 999 99-99') => {
+  return inputmask && value
+    ? inputmask.format(value, {alias: phoneFormat})
+    : value;
+});
+
+Vue.filter('dateFormat', (date, dateFormat = 'MMM YYYY') => {
   return moment(date).format(dateFormat);
 });
 
-Vue.filter('pluralize', (count, label = '') => {
-  if (count === 1) {
-    return `${count}${label}`;
+Vue.filter('moneyFormat', (number = 0, n, x = 3, s = ' ', c) => {
+  const re = '\\d(?=(\\d{' + x + '})+' + (n > 0 ? '\\D' : '$') + ')';
+  const num = number.toFixed(Math.max(0, ~~n));
+  return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + s);
+});
+
+Vue.filter('pluralize', (number, words) => {
+  number = Math.abs(number);
+  number %= 100;
+  if (number >= 5 && number <= 20) {
+    return words[2];
   }
-  return `${count}${label}s`;
+  number %= 10;
+  if (number === 1) {
+    return words[0];
+  }
+  if (number >= 2 && number <= 4) {
+    return words[1];
+  }
+  return words[2];
+});
+
+Vue.filter('toFixed', (value, count = 0) => {
+  if (value) {
+    return value.toFixed(count);
+  }
+
+  return value;
 });
 
 Vue.filter('getCleanPhoneNumber', string => {
-  return string.replace(/ |-|—/gi, '');
+  return string.replace(/ |-|—|\(|\)/gi, '').replace(/\+7/gi, '8');
 });
 
 Vue.filter('normalizeCamel', string => {

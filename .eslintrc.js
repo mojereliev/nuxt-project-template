@@ -179,6 +179,7 @@ module.exports = {
     'window': true,
     'TimelineMax': true,
     'TimelineLite': true,
+    'TweenLite': true,
     'Power1': true,
     'Power2': true,
     'Power3': true,
