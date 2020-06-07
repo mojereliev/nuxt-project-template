@@ -10,18 +10,35 @@ export default {
   state: () => {
     return {
       currentLayout: null,
+      cursor: 'default',
       fontSize: 0,
       isLoad: null,
       isMobilePlatform: platformDetect ? platformDetect.detectMobile.isMobile : null,
       isReady: null,
       sizes: null,
       uiColor: 'black',
+      blur: false,
+      cursorCoordinates: null,
+      interactiveHoverNode: null,
       scrollBar: {
         width: scrollBarHelper ? scrollBarHelper.getScrollBarWidth() : null
       }
     };
   },
   mutations: {
+    setFocus: (state, payload) => {
+      state.blur = false;
+      state.interactiveHoverNode = payload;
+    },
+    setBlur: state => {
+      state.blur = true;
+    },
+    setCursor: (state, payload = 'default') => {
+      state.cursor = payload;
+    },
+    setCursorCoordinates(state, payload) {
+      state.cursorCoordinates = payload;
+    },
     setAppReady(state, payload) {
       state.isReady = payload;
     },
@@ -45,6 +62,9 @@ export default {
     }
   },
   getters: {
+    getScrollBarWidth: state => {
+      return `${state.sizes?.scrollbar?.width}px`;
+    },
     isMobile: state => {
       return state.currentLayout === 'mobile';
     },

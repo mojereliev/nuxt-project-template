@@ -1,4 +1,5 @@
 import app from './modules/app';
+import {commonApi} from '~/services';
 
 export const modules = {
   app
@@ -16,10 +17,10 @@ export const mutations = {
 
 export const actions = {
   async nuxtServerInit({dispatch}) { // eslint-disable-line
-    // await dispatch('fetchCommonData');
+    await dispatch('fetchCommonData');
   },
   async fetchCommonData({commit}) { // eslint-disable-line
-    const {data} = await this.$axios.get('settings');
+    const {data} = await commonApi.getCommonData();
 
     commit('setCommonData', data);
   }

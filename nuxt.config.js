@@ -58,6 +58,7 @@ module.exports = {
     '~plugins/axios',
     '~plugins/filters.js',
     '~plugins/directives.js',
+    '~plugins/mocks.js',
     '~plugins/svgstore.js',
     '~plugins/gsap.js',
     {src: '~plugins/swiper.js', ssr: false}
