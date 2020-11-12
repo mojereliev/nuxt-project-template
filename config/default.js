@@ -1,9 +1,9 @@
 module.exports = {
   axios: {
-    baseURL: 'api/'
+    baseURL: 'api/',
   },
   moment: {
     locales: ['en-gb'],
-    defaultLocale: 'en'
-  }
+    defaultLocale: 'en',
+  },
 };

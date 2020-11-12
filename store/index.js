@@ -2,17 +2,17 @@ import app from './modules/app';
 import {commonApi} from '~/services';
 
 export const modules = {
-  app
+  app,
 };
 
-export const state = () => ({
-  commonData: null
+const defaultState = () => ({
+  commonData: null,
 });
 
 export const mutations = {
   setCommonData(state, payload) {
     state.commonData = payload;
-  }
+  },
 };
 
 export const actions = {
@@ -21,7 +21,8 @@ export const actions = {
   },
   async fetchCommonData({commit}) { // eslint-disable-line
     const {data} = await commonApi.getCommonData();
-
     commit('setCommonData', data);
-  }
+  },
 };
+
+export const state = defaultState;

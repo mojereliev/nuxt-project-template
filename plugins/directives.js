@@ -1,13 +1,14 @@
 import Vue from 'vue';
+import { TweenLite } from 'gsap';
 
 Vue.directive('focus', {
-  inserted: function (el) {
+  inserted(el) {
     el.getElementsByTagName('INPUT')[0].focus();
-  }
+  },
 });
 
 Vue.directive('anchor', {
-  bind: function (el, binding) {
+  bind(el, binding) {
     const scrollElement = document.querySelector('.page__container');
 
     el.addEventListener('click', () => {
@@ -15,8 +16,8 @@ Vue.directive('anchor', {
 
       if (hashElement) {
         const scrollTop = hashElement.getBoundingClientRect().top + scrollElement.scrollTop;
-        TweenLite.to(scrollElement, .5, {scrollTo: scrollTop});
+        TweenLite.to(scrollElement, 0.5, { scrollTo: scrollTop });
       }
     });
-  }
+  },
 });

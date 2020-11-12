@@ -1,12 +1,12 @@
-<template>
+<template lang="pug">
+  div
 </template>
 
 <script>
-  export default {
-    props: ['error'],
-    layout: 'error',
-    created() {
-      this.$router.push({name: 'index'});
-    }
-  };
+export default {
+  layout: 'error',
+  created() {
+    this.$router.push({ name: 'index' });
+  },
+};
 </script>

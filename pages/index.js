@@ -1,5 +1,3 @@
-import {mapGetters} from 'vuex';
-
 export default {
   name: 'index-root',
 
@@ -7,14 +5,8 @@ export default {
 
   data() {
     return {
-      enableCasesAnimation: false
+      enableCasesAnimation: false,
     };
-  },
-
-  computed: {
-    ...mapGetters([
-      'isMobile'
-    ])
   },
 
   watch: {},
@@ -25,5 +17,5 @@ export default {
 
   methods: {},
 
-  beforeDestroy() {}
+  beforeDestroy() {},
 };

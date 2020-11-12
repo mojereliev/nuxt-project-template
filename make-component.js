@@ -1,8 +1,7 @@
-'use strict';
-
 const fs = require('fs');
 const path = require('path');
-const createInterface = require('readline').createInterface;
+const { createInterface } = require('readline');
+
 const rl = createInterface(process.stdin, process.stdout);
 
 // folder with all blocks
@@ -12,12 +11,14 @@ const BLOCKS_DIR = path.join(__dirname, 'components');
 
 // default content for files in new block
 const fileSources = {
-  vue: `<template lang="pug" src="./{blockName}.pug"></template>
+  vue: `<template lang="pug">
+include ../../node_modules/bemto.pug/bemto
 
-<script src="./{blockName}.js"></script>
++b.{blockName}\n\t
+</template>
 
-<style lang="stylus" rel="stylesheet/stylus" src="./{blockName}.styl" scoped></style>\n`,
-  js: `export default {
+<script src="./{blockName}.js">
+export default {
   name: '{blockName}',
 
   components: {},
@@ -37,14 +38,13 @@ const fileSources = {
   methods: {},
 
   beforeDestroy() {}
-};\n`,
+};\n
+</script>
 
-  pug: `include ../../node_modules/bemto.pug/bemto
-
-+b.{blockName}\n\t`,
-
-  styl: `.{blockName}
-  display block\n`
+<style lang="stylus" rel="stylesheet/stylus" scoped>
+.{blockName}
+  display block\n
+</style>\n`,
 };
 
 function validateBlockName(blockName) {
@@ -55,55 +55,31 @@ function validateBlockName(blockName) {
       resolve(isValid);
     } else {
       const errMsg = (
-        `ERR>>> An incorrect block name '${blockName}'\n` +
-        'ERR>>> A block name must include letters, numbers & the minus symbol.'
+        `ERR>>> An incorrect block name '${blockName}'\n`
+        + 'ERR>>> A block name must include letters, numbers & the minus symbol.'
       );
       reject(errMsg);
     }
   });
 }
 
-function directoryExist(blockPath, blockName) {
-  return new Promise((resolve, reject) => {
-    fs.stat(blockPath, notExist => {
-      if (notExist) {
-        resolve();
-      } else {
-        reject(`ERR>>> The block '${blockName}' already exists.`);
-      }
-    });
-  });
-}
-
-function createDir(dirPath) {
-  return new Promise((resolve, reject) => {
-    fs.mkdir(dirPath, err => {
-      if (err) {
-        reject(`ERR>>> Failed to create a folder '${dirPath}'`);
-      } else {
-        resolve();
-      }
-    });
-  });
-}
-
 function createFiles(blocksPath, blockName) {
   const promises = [];
-  Object.keys(fileSources).forEach(ext => {
+  Object.keys(fileSources).forEach((ext) => {
     const fileSource = fileSources[ext].replace(/\{blockName}/g, blockName);
     const filename = `${blockName}.${ext}`;
     const filePath = path.join(blocksPath, filename);
 
     promises.push(
       new Promise((resolve, reject) => {
-        fs.writeFile(filePath, fileSource, 'utf8', err => {
+        fs.writeFile(filePath, fileSource, 'utf8', (err) => {
           if (err) {
-            reject(`ERR>>> Failed to create a file '${filePath}'`);
+            reject(`ERR>>> Failed to create a file '${filePath}'`); // eslint-disable-line prefer-promise-reject-errors
           } else {
             resolve();
           }
         });
-      })
+      }),
     );
   });
 
@@ -114,7 +90,7 @@ function getFiles(blockPath) {
   return new Promise((resolve, reject) => {
     fs.readdir(blockPath, (err, files) => {
       if (err) {
-        reject(`ERR>>> Failed to get a file list from a folder '${blockPath}'`);
+        reject(`ERR>>> Failed to get a file list from a folder '${blockPath}'`); // eslint-disable-line prefer-promise-reject-errors
       } else {
         resolve(files);
       }
@@ -132,22 +108,18 @@ function printErrorMessage(errText) {
 function initMakeBlock(candidateBlockName) {
   const blockNames = candidateBlockName.trim().split(/\s+/);
 
-  const makeBlock = blockName => {
-    const blockPath = path.join(BLOCKS_DIR, blockName);
-
+  const makeBlock = (blockName) => {
     return validateBlockName(blockName)
-      .then(() => directoryExist(blockPath, blockName))
-      .then(() => createDir(blockPath))
-      .then(() => createFiles(blockPath, blockName))
-      .then(() => getFiles(blockPath))
-      .then(files => {
+      .then(() => createFiles(BLOCKS_DIR, blockName))
+      .then(() => getFiles(BLOCKS_DIR))
+      .then((files) => {
         const line = '-'.repeat(48 + blockName.length);
         console.log(line);
         console.log(`The block has just been created in 'app/blocks/${blockName}'`);
         console.log(line);
 
         // Displays a list of files created
-        files.forEach(file => console.log(file));
+        files.forEach((file) => console.log(file));
 
         rl.close();
       });
@@ -157,7 +129,7 @@ function initMakeBlock(candidateBlockName) {
     return makeBlock(blockNames[0]);
   }
 
-  const promises = blockNames.map(name => makeBlock(name));
+  const promises = blockNames.map((name) => makeBlock(name));
   return Promise.all(promises);
 }
 
@@ -179,7 +151,7 @@ if (blockNameFromCli !== '') {
 } else {
   rl.setPrompt('Block(s) name: ');
   rl.prompt();
-  rl.on('line', line => {
+  rl.on('line', (line) => {
     initMakeBlock(line).catch(printErrorMessage);
   });
 }
