@@ -2,8 +2,16 @@
   include ../node_modules/bemto.pug/bemto
 
   +b.HEADER.header(:class="color ? `header_color_${color}` : ''")
-    +e.ROUTER-LINK.logo(:to="{name: 'index'}")
+    +e.ROUTER-LINK.logo(:to="localePath('/')")
       +e.ICON.logo-icon(name="behance")
+
+    +e.NUXT-LINK.language-item(
+      :to="switchLocalePath('ru')"
+    ) Ru
+
+    +e.NUXT-LINK.language-item(
+      :to="switchLocalePath('en')"
+    ) En
 
 </template>
 

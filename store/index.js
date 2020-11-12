@@ -1,5 +1,5 @@
+import { commonApi } from '@/services';
 import app from './modules/app';
-import {commonApi} from '~/services';
 
 export const modules = {
   app,
@@ -20,7 +20,7 @@ export const actions = {
     await dispatch('fetchCommonData');
   },
   async fetchCommonData({commit}) { // eslint-disable-line
-    const {data} = await commonApi.getCommonData();
+    const { data } = await commonApi.getCommonData();
     commit('setCommonData', data);
   },
 };

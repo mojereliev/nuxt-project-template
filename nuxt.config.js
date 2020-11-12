@@ -57,18 +57,8 @@ module.exports = {
   modules: [
     '@nuxtjs/axios',
     ['@nuxtjs/moment', modulesConfig.get('moment')],
-    [
-      'nuxt-mq',
-      {
-        // Default breakpoint for SSR
-        defaultBreakpoint: 'lg',
-        breakpoints: {
-          sm: 767,
-          md: 1024,
-          lg: Infinity,
-        },
-      },
-    ],
+    ['nuxt-i18n', modulesConfig.get('i18n')],
+    ['nuxt-mq', modulesConfig.get('mq')],
   ],
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
@@ -82,6 +72,7 @@ module.exports = {
     { src: '@/plugins/svgstore.js', mode: 'client' },
     { src: '@/plugins/gsap.js' },
     { src: '@/plugins/mixins.js' },
+    { src: '@plugins/mocks.js' },
     { src: '@/plugins/swiper.js', mode: 'client' },
     { src: '@/plugins/vue-observe-visibility.js', mode: 'client' },
   ],
@@ -129,6 +120,11 @@ module.exports = {
             item.use.push(stylusResourcesLoader);
           });
         }
+      });
+
+      config.module.rules.push({
+        test: /\.yml$/,
+        use: ['json-loader', 'yaml-loader'],
       });
     },
   },
