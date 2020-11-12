@@ -10,7 +10,7 @@ const isStylusRule = (rule) => {
 const stylusResourcesLoader = {
   loader: 'stylus-loader',
   options: {
-    import: path.join(__dirname, 'assets/stylesheets/common/global.styl'),
+    import: path.join(__dirname, 'assets/stylesheets/global.styl'),
   },
 };
 

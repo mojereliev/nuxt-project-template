@@ -1,0 +1,105 @@
+.html-block
+  hyphens auto
+
+  h1
+  h2
+    text-bigger()
+    margin-bottom (53em / 43)
+
+    &:not(:first-child)
+      margin-top 1.6em
+
+  h3
+  h4
+    text-big()
+    font-weight 500
+    margin-bottom 1em
+
+    &:not(:first-child)
+      margin-top 52rem
+
+  h5
+  h6
+    text-medium()
+    font-weight 500
+
+  p
+    text-medium()
+    margin 0
+
+    + p
+      text-indent 3em
+
+  table
+    text-smaller()
+    width 100%
+
+  td
+    padding 10rem 0 9px 0
+    border-top 1px solid currentColor
+    vertical-align top
+    font-size 15rem
+
+    &.border-opacity
+      border-top-color rgba($white, .4)
+
+    +mobile()
+      padding 11px 20px 10px 0
+      font-size inherit
+
+    &:first-child
+      width 35%
+
+  ul
+    margin-bottom (25em / 18)
+
+    li
+      position relative
+      padding-left (30em / 18)
+
+      &:before
+        content '+'
+        position absolute
+        top .2em
+        left 0
+        font-size .8em
+
+  ol
+    margin-bottom (25em / 18)
+    counter-reset list
+
+    li
+      position relative
+      padding-left (30em / 18)
+
+      &:before
+        counter-increment list
+        content counter(list) ")"
+        position absolute
+        top .2em
+        left 0
+        font-size (12em / 18)
+
+  figure
+    margin 0 0 30rem
+    display inline-block
+    vertical-align top
+
+    &.half
+      width calc(50% - 15rem)
+
+      + .half
+        margin-left auto
+
+  figcaption
+    text-smallest()
+    font-style italic
+    margin-top (6em / 12)
+
+  img
+    display block
+    width 100%
+
+  a
+    link-style()
+    text-decoration underline
