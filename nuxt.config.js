@@ -55,13 +55,13 @@ module.exports = {
     ['@nuxtjs/moment', modulesConfig.get('moment')]
   ],
   plugins: [
-    '~plugins/axios',
-    '~plugins/filters.js',
-    '~plugins/directives.js',
-    '~plugins/mocks.js',
-    '~plugins/svgstore.js',
-    '~plugins/gsap.js',
-    {src: '~plugins/swiper.js', ssr: false}
+    {src: '@plugins/axios'},
+    {src: '@plugins/filters.js'},
+    {src: '@plugins/directives.js'},
+    {src: '@plugins/svgstore.js'},
+    {src: '@plugins/gsap.js'},
+    {src: '@plugins/swiper.js', mode: 'client'},
+    {src: '@plugins/vuetify-google-autocomplete', mode: 'client'}
   ],
   router: {
     middleware: [
