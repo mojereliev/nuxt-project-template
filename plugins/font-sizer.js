@@ -1,30 +1,36 @@
 import throttle from '@/utils/throttle';
 
+const platformDetect = process.browser
+  ? require('@/utils/platformDetect')
+  : null;
+
+const isMobile = platformDetect?.detectMobile.isMobile || platformDetect?.detectTablet.isTablet;
+
 export default function ({ store }) {
   const props = {
     target: document.querySelector('html'),
     bp: {
       sm: {
-        width: 750,
+        width: 375,
         height: 640,
-        fontSize: 13,
-      },
-      md: {
-        width: 1280,
-        height: 750,
-        fontSize: 13,
+        fontSize: 27,
       },
       lg: {
-        width: 1600,
+        width: 1440,
         height: 900,
-        fontSize: 13,
+        fontSize: 27,
       },
     },
   };
 
   function update(bp = 'lg') {
-    const heightSuccess = window.innerHeight;
-    const widthSuccess = window.innerWidth;
+    const heightSuccess = isMobile
+      ? window.outerrHeight
+      : window.innerHeight;
+
+    const widthSuccess = isMobile
+      ? window.outerWidth
+      : window.innerWidth;
 
     const contentBoxWidth = props.bp[bp].width;
     const contentBoxHeight = props.bp[bp].height;
@@ -63,8 +69,8 @@ export default function ({ store }) {
       }
     }
 
-    let fontSize = Math.floor(scale * baseFontSize);
-    fontSize = fontSize > baseFontSize ? baseFontSize : fontSize;
+    const fontSize = Math.floor(scale * baseFontSize);
+    // fontSize = fontSize > baseFontSize ? baseFontSize : fontSize;
 
     props.target.style.fontSize = `${fontSize}px`;
 
@@ -73,11 +79,6 @@ export default function ({ store }) {
 
   function saveSizes() {
     store.commit('app/setFontSize', update(window.$nuxt?.$mq));
-
-    store.commit('app/setViewportSizeSize', {
-      width: window.innerWidth,
-      height: window.innerHeight,
-    });
   }
 
   const onWindowResize = throttle(() => {
@@ -86,5 +87,7 @@ export default function ({ store }) {
 
   window.addEventListener('resize', onWindowResize);
 
-  saveSizes();
+  setTimeout(() => {
+    saveSizes();
+  }, 0);
 }

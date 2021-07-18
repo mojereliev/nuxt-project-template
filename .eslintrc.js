@@ -1,11 +1,14 @@
 module.exports = {
   root: true,
   env: {
+    es6: true,
     browser: true,
     node: true,
   },
   parserOptions: {
-    parser: 'babel-eslint',
+    parser: '@babel/eslint-parser',
+    requireConfigFile: false,
+    sourceType: 'module',
   },
   settings: {
     'import/resolver': {

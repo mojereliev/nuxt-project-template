@@ -1,7 +1,7 @@
 import Vue from 'vue';
 
 const platformDetect = process.browser
-  ? require('@/utils/platformDetect.js')
+  ? require('@/utils/platformDetect')
   : null;
 
 Vue.mixin({

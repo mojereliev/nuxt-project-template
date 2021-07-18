@@ -11,14 +11,14 @@ export default {
 
   components: {},
 
-  async fetch({ store }) {
-    await store.dispatch('fetchCommonData');
-  },
-
   data() {
     return {
       enableCasesAnimation: false,
     };
+  },
+
+  async fetch({ store }) {
+    await store.dispatch('fetchCommonData');
   },
 
   watch: {},

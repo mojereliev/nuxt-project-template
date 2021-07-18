@@ -1,46 +1,39 @@
-title-big()
-  font-size 80px
-  font-weight 800
-  text-transform uppercase
-  line-height (85 / 80)
-  margin-left -.05em
-
-  +tablet()
-    font-size 60px
+heading-1(weight = 500, transform = initial)
+  font-weight weight
+  text-transform transform
+  font-size rem(120)
+  line-height (130 / 120)
 
   +mobile()
-    font-size 32px
+    font-size rem(44)
+    line-height (46 / 44)
 
-title-medium()
-  font-size 32px
-  font-weight 800
-  text-transform uppercase
-  line-height (40 / 32)
-
-  +mobile()
-    font-size 24px
-
-title-small()
-  font-size 18px
-  font-weight 600
-  letter-spacing (1em / 18)
-  text-transform uppercase
-  line-height (22 / 18)
-
-text-big()
-  font-size 24px
-  line-height (42 / 24)
+heading-2(weight = 500, transform = initial)
+  font-weight weight
+  text-transform transform
+  font-size rem(90)
+  line-height (100 / 90)
 
   +mobile()
-    font-size 18px
+    font-size rem(34)
+    line-height (40 / 34)
 
-text-medium()
-  font-size 18px
-  line-height (29 / 18)
+text-1(weight = 400, transform = initial)
+  font-weight weight
+  text-transform transform
+  font-size rem(50)
+  line-height (75 / 50)
 
   +mobile()
-    font-size 16px
+    font-size rem(24)
+    line-height (34 / 24)
 
-text-small()
-  font-size 16px
-  line-height (26 / 16)
+text-2(weight = 400, transform = initial)
+  font-weight weight
+  text-transform transform
+  font-size rem(40)
+  line-height (50 / 40)
+
+  +mobile()
+    font-size rem(20)
+    line-height (26 / 20)

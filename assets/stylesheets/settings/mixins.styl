@@ -61,6 +61,7 @@ bgContainer(img)
 fonts($fontFamily, $src, $weight = normal, $style = normal)
   @font-face
     font-family $fontFamily
+    font-display auto
     src url(../'~assets/fonts'/$src.woff2) format('woff2'),
       url(../'~assets/fonts'/$src.woff) format('woff')
     font-weight $weight

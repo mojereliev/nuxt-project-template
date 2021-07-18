@@ -27,7 +27,6 @@ module.exports = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge' },
       { name: 'msapplication-TileColor', content: '#000000' },
-      { name: 'msapplication-TileImage', content: '/mstile-144x144.png' },
       { name: 'theme-color', content: '#000000' },
       { hid: 'description', name: 'description', content: description },
       { hid: 'keywords', name: 'keywords', content: keywords },
@@ -74,6 +73,7 @@ module.exports = {
     { src: '@/plugins/mixins.js' },
     { src: '@plugins/mocks.js' },
     { src: '@/plugins/swiper.js', mode: 'client' },
+    { src: '@/plugins/ui-sizes.js', mode: 'client' },
     { src: '@/plugins/vue-observe-visibility.js', mode: 'client' },
   ],
   router: {

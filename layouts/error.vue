@@ -19,13 +19,13 @@ include ../node_modules/bemto.pug/bemto
 
 <script>
 export default {
+  layout: 'error',
   props: {
     error: {
       type: Object,
       required: true,
     },
   },
-  layout: 'error',
   computed: {
     errorText() {
       switch (this.errorStatusCode) {
