@@ -6,6 +6,9 @@ const platformDetect = process.browser
 
 Vue.mixin({
   computed: {
+    isMqMobile() {
+      return this.$mq === 'sm';
+    },
     isMobilePlatform() {
       return platformDetect?.detectMobile.isMobile;
     },

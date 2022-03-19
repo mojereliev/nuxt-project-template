@@ -13,19 +13,26 @@ export default function ({ store }) {
       sm: {
         width: 375,
         height: 640,
-        fontSize: 27,
+        fontSize: 1,
       },
       lg: {
         width: 1440,
         height: 900,
-        fontSize: 27,
+        fontSize: 1,
+      },
+      xl: {
+        width: 1440,
+        height: 900,
+        fontSize: 1,
       },
     },
   };
 
   function update(bp = 'lg') {
+    console.log('> Plugin: font-sizer -> bp:', bp);
+
     const heightSuccess = isMobile
-      ? window.outerrHeight
+      ? window.outerHeight
       : window.innerHeight;
 
     const widthSuccess = isMobile
@@ -69,7 +76,7 @@ export default function ({ store }) {
       }
     }
 
-    const fontSize = Math.floor(scale * baseFontSize);
+    const fontSize = scale * baseFontSize;
     // fontSize = fontSize > baseFontSize ? baseFontSize : fontSize;
 
     props.target.style.fontSize = `${fontSize}px`;

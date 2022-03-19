@@ -23,7 +23,7 @@ export default {
     },
     wrapper: {
       type: String,
-      default: '.page__body',
+      default: '.page__inner',
     },
   },
 
@@ -95,10 +95,10 @@ export default {
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>
   .overlap-element
-    color $blackLight
+    color $black
     transition color .3s ease
 
     &.is-dark
-      color white
+      color $white
 
 </style>

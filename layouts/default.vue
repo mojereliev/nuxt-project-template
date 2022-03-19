@@ -8,19 +8,21 @@
     "`page_platform_${isMobilePlatform ? 'mobile' : 'desktop'}`" +
     "]"
   )
+    client-only
+      Loader
+
     transition(
       appear,
-      @enter="fadeIn"
+      name="fade"
     )
       +e.wrapper(v-show="isReady")
-        transition(
-          @enter="fadeIn",
-          @leave="fadeOut"
-        )
-          +e.container
-            HeaderComponent
+        HeaderComponent
 
+        +e.inner
+          +e.container
             nuxt
+
+            FooterComponent
 
 </template>
 
@@ -126,5 +128,12 @@ export default {
     &__container
     &__inner
       height 100%
+
+    &__inner
+      scroll()
+      position relative
+
+    &__container
+      position relative
 
 </style>
